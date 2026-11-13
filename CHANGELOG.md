@@ -2,6 +2,9 @@
 
 ## v0.1.0 — first release
 
+Published as [v0.1.0](https://github.com/matlesz/mf971v-dashboard/releases/tag/v0.1.0)
+(`sha256 161c0711…a1bb04`, 6,422,712 bytes, static ARMv7).
+
 - Read-only collector for the MF971V status API with a compiled-in key
   allowlist and the required `Referer` header.
 - `/proc` and `/sys` collectors: CPU, load, memory, uptime, per-mount free

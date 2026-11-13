@@ -88,24 +88,31 @@ would be a separate investigation and is out of scope for this release.
 
 ## Tested on hardware
 
-Executed on the reference unit on 2026-11-13 (v0.1.0, static ARMv7 binary):
+Executed on the reference unit on 2026-11-13. The **published v0.1.0 release
+asset** (built by CI, `sha256 161c07111b141ae0635d454f7539e847402c7cb79158ebc7632adfa7d5a1bb04`,
+6,422,712 bytes) was pushed to `/cache` and run from there:
 
 | Item | Result |
 | --- | --- |
 | Vendor API from a workstation over USB networking | works |
 | Vendor API from the device itself | works |
-| ARMv7 static build produced | yes, 7.2 MB |
-| Binary executed on the router | yes — served the UI and live data |
-| Memory footprint | ~5.5 MB RSS, ~560 MB virtual (Go address space reservation) |
+| ARMv7 static build produced | yes, 6.4–7.2 MB depending on Go version |
+| Released binary executed on the router | yes — served the UI and live data, `version v0.1.0` |
+| Memory footprint | 3.8–5.5 MB RSS (Go address space reserves ~560 MB virtual) |
 | Collector warnings during the test | none |
+| Browser console errors | none |
 | Autostart / persistence | deliberately not implemented |
 
-What the live run corrected, compared with the first workstation-only build:
+The release asset is built by the workflow with Go 1.24.x; the same source was
+also run from a local Go 1.27.2 build. Both behaved identically, and both were
+removed afterwards with the router restarted back to normal USB operation.
+
+What the live runs corrected, compared with the first workstation-only build:
 
 - `voltage_now` is **millivolts** (`4362` → 4.36 V) despite the kernel class
   documenting microvolts; `current_avg` is **milliamps** (`12` → +12 mA).
-- The `battery` thermal zone (`3400`) needed the 100× scaling rule; the
-  neighbouring `power_supply` temperature (`34`) is already Celsius.
+- The `battery` thermal zone (`3300`–`3400`) needed the 100× scaling rule; the
+  neighbouring `power_supply` temperature (`33`–`34`) is already Celsius.
 - A UI bug in the sparkline series initialisation was only visible in a browser,
   not in unit tests; it is fixed.
 - Radio figures were present (`RSCP -86`) while `ppp_status` was

@@ -2,6 +2,9 @@
 
 A small, **read-only** status dashboard for the ZTE MF971V LTE MiFi.
 
+**Download:** [v0.1.0 release](https://github.com/matlesz/mf971v-dashboard/releases/tag/v0.1.0) —
+a static ARMv7 binary plus `SHA256SUMS`.
+
 One statically linked ARM binary with the UI compiled in. It polls the router's
 own status API and reads `/proc` and `/sys`, then serves a responsive page. It
 never writes to the router, never changes settings, and never proxies arbitrary
