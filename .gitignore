@@ -1,0 +1,5 @@
+/dist/
+/mf971v-dashboard
+/mf971v-dashboard-*
+*.test
+.DS_Store

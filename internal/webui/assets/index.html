@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>MF971V status</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <h1>MF971V</h1>
+    <p id="firmware" class="muted">connecting…</p>
+  </div>
+  <div class="status">
+    <span id="service-pill" class="pill pill-muted">checking</span>
+    <span id="updated" class="muted">–</span>
+  </div>
+</header>
+
+<main>
+  <section class="grid">
+    <article class="card">
+      <h2>Connection</h2>
+      <dl class="kv">
+        <dt>Network</dt><dd id="network-type">–</dd>
+        <dt>PPP</dt><dd id="ppp-status">–</dd>
+        <dt>Modem</dt><dd id="modem-state">–</dd>
+        <dt>Signal</dt><dd id="signal">–</dd>
+      </dl>
+    </article>
+
+    <article class="card">
+      <h2>Battery</h2>
+      <div class="battery">
+        <div class="battery-ring"><span id="battery-pct">–</span></div>
+        <dl class="kv">
+          <dt>State</dt><dd id="battery-status">–</dd>
+          <dt>Health</dt><dd id="battery-health">–</dd>
+          <dt>Voltage</dt><dd id="battery-voltage">–</dd>
+          <dt>Current</dt><dd id="battery-current">–</dd>
+          <dt>Temperature</dt><dd id="battery-temp">–</dd>
+        </dl>
+      </div>
+    </article>
+
+    <article class="card">
+      <h2>CPU <span id="load" class="muted small"></span></h2>
+      <p class="big"><span id="cpu">–</span></p>
+      <canvas id="cpu-spark" class="spark" height="48" aria-label="CPU history"></canvas>
+    </article>
+
+    <article class="card">
+      <h2>Memory</h2>
+      <p class="big"><span id="mem-used">–</span></p>
+      <div class="bar"><span id="mem-bar"></span></div>
+      <p id="mem-detail" class="muted small">–</p>
+    </article>
+
+    <article class="card">
+      <h2>Throughput</h2>
+      <canvas id="net-spark" class="spark" height="64" aria-label="Throughput history"></canvas>
+      <p id="net-summary" class="muted small">–</p>
+    </article>
+
+    <article class="card">
+      <h2>Usage</h2>
+      <dl class="kv">
+        <dt>This period</dt><dd id="usage-month">–</dd>
+        <dt>Session time</dt><dd id="usage-time">–</dd>
+        <dt>Uptime</dt><dd id="uptime">–</dd>
+      </dl>
+    </article>
+
+    <article class="card">
+      <h2>Wi-Fi</h2>
+      <dl class="kv">
+        <dt>Radio</dt><dd id="wifi-radio">–</dd>
+        <dt>Channel</dt><dd id="wifi-channel">–</dd>
+        <dt>Band</dt><dd id="wifi-band">–</dd>
+        <dt>Clients</dt><dd id="wifi-clients">–</dd>
+      </dl>
+    </article>
+
+    <article class="card">
+      <h2>Temperatures</h2>
+      <ul id="temps" class="temps"><li class="muted">–</li></ul>
+    </article>
+
+    <article class="card wide">
+      <h2>Storage</h2>
+      <ul id="disks" class="bars"><li class="muted">–</li></ul>
+    </article>
+
+    <article class="card wide">
+      <h2>Interfaces</h2>
+      <table class="table">
+        <thead><tr><th>Name</th><th>RX</th><th>TX</th><th>Total RX</th><th>Total TX</th></tr></thead>
+        <tbody id="ifaces"><tr><td colspan="5" class="muted">–</td></tr></tbody>
+      </table>
+    </article>
+  </section>
+
+  <details id="warnings-wrap" class="warnings" hidden>
+    <summary>Collector notes <span id="warning-count" class="muted"></span></summary>
+    <ul id="warnings"></ul>
+  </details>
+</main>
+
+<footer class="foot">
+  <p class="muted small">Read-only view. Every value comes from the router's own status API, <code>/proc</code> and <code>/sys</code>. Nothing is written to the device.</p>
+</footer>
+
+<script src="/app.js"></script>
+</body>
+</html>
